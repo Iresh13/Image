@@ -161,7 +161,7 @@ const ImageView = ({componentId}: IProps) => {
         onCancel={onSelectionCancelled}
       />
 
-      {images.length >= 0 ? (
+      {images.length <= 0 ? (
         <View style={styles.centerView}>
           <GenericText text="No Photos" variation="bold large" />
         </View>
