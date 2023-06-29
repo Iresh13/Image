@@ -5,6 +5,7 @@ import {
   StyleSheet,
   SafeAreaView,
   TouchableOpacity,
+  View,
 } from 'react-native';
 import Animated, {
   Easing,
@@ -29,6 +30,7 @@ import ImageComponent from './image.component';
 import {CustomNavigation} from '../helpers/navigation.helper';
 
 import {updateImages} from '../redux/redux.action';
+import GenericText from '../app/ui/text';
 
 interface IProps {
   componentId: string;
@@ -157,28 +159,34 @@ const ImageView = ({componentId}: IProps) => {
         onDelete={() => setShowModal(true)}
         onCancel={onSelectionCancelled}
       />
-      <FlatList
-        data={images}
-        numColumns={3}
-        initialNumToRender={10}
-        maxToRenderPerBatch={10}
-        showsVerticalScrollIndicator={false}
-        keyExtractor={index => index.toString()}
-        renderItem={({item}) => {
-          return (
-            <TouchableOpacity
-              onPress={() => onImagePressed(item)}
-              onLongPress={() => {
-                setShowMenu(true);
-                mapSelectedImages(item);
-              }}
-              style={styles.imageWrapper}>
-              <ImageComponent image={item} />
-            </TouchableOpacity>
-          );
-        }}
-      />
 
+      {images.length >= 0 ? (
+        <View style={styles.centerView}>
+          <GenericText text="No Photos" variation="bold large" />
+        </View>
+      ) : (
+        <FlatList
+          data={images}
+          numColumns={3}
+          initialNumToRender={10}
+          maxToRenderPerBatch={10}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={index => index.toString()}
+          renderItem={({item}) => {
+            return (
+              <TouchableOpacity
+                onPress={() => onImagePressed(item)}
+                onLongPress={() => {
+                  setShowMenu(true);
+                  mapSelectedImages(item);
+                }}
+                style={styles.imageWrapper}>
+                <ImageComponent image={item} />
+              </TouchableOpacity>
+            );
+          }}
+        />
+      )}
       <FabView
         rightValue={20}
         bottomValue={40}
@@ -241,6 +249,7 @@ const styles = StyleSheet.create<IStyles>({
     flex: 1,
     backgroundColor: COLORS.BACKGROUND_COLOR,
   },
+  centerView: {flex: 1, justifyContent: 'center', alignItems: 'center'},
 });
 
 export default ImageView;

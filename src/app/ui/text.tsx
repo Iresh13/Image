@@ -37,6 +37,9 @@ const styles = StyleSheet.create<IStyles>({
   white: {
     color: COLORS.WHITE,
   },
+  large: {
+    fontSize: FONTS.SECONDARY_FONT_SIZE,
+  },
   center: {
     textAlign: 'center',
   },
