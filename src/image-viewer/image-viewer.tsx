@@ -53,8 +53,6 @@ const ImageViewer = ({image, onDelete, componentId}: IImageProps) => {
 
   const [showModal, setShowModal] = useState<boolean>(false);
 
-  console.log(image);
-
   const pinchGesture = Gesture.Pinch()
     .onUpdate(e => {
       scale.value = savedScale.value * e.scale;
