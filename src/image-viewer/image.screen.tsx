@@ -1,11 +1,11 @@
 import {
+  View,
   Modal,
   FlatList,
   Dimensions,
   StyleSheet,
   SafeAreaView,
   TouchableOpacity,
-  View,
 } from 'react-native';
 import Animated, {
   Easing,
@@ -17,20 +17,21 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-import Alert from '../app/ui/alert';
-import FabView from '../app/ui/fab';
 import {COLORS} from '../app/themes/color';
 import {STYLES} from '../app/themes/styles';
+
+import Alert from '../app/ui/alert';
+import FabView from '../app/ui/fab';
+import GenericText from '../app/ui/text';
 import GenericButton from '../app/ui/button';
-import {APP_SCREENS} from '../app/app.screens';
 import GenericToolbar from '../app/ui/toolbar';
+
+import {APP_SCREENS} from '../app/app.screens';
 import {IImage, IReducerState, IStyles, TDispatch} from '../app/app.types';
 
 import ImageComponent from './image.component';
-import {CustomNavigation} from '../helpers/navigation.helper';
-
 import {updateImages} from '../redux/redux.action';
-import GenericText from '../app/ui/text';
+import {CustomNavigation} from '../helpers/navigation.helper';
 
 interface IProps {
   componentId: string;

@@ -3,8 +3,8 @@ import Ant from 'react-native-vector-icons/AntDesign';
 import {Image, View, Dimensions, StyleSheet, Platform} from 'react-native';
 
 import {IImage} from '../app/app.types';
-import {COLORS} from '../app/themes/color';
 import {APP} from '../app/app.constant';
+import {COLORS} from '../app/themes/color';
 
 interface ImageProps {
   image: IImage;

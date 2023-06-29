@@ -1,12 +1,12 @@
 import {Navigation} from 'react-native-navigation';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 
-import App from '../../App';
-
-import {APP_SCREENS} from './app.screens';
-import {ReduxProvider} from '../redux/redux.store';
 import ImageView from '../image-viewer/image.screen';
 import ImageViewer from '../image-viewer/image-viewer';
+
+import App from '../../App';
+import {APP_SCREENS} from './app.screens';
+import {ReduxProvider} from '../redux/redux.store';
 
 export default function registerScreen() {
   Navigation.registerComponent(

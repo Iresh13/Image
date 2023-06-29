@@ -4,14 +4,12 @@ import Animated, {
   useSharedValue,
   useAnimatedStyle,
 } from 'react-native-reanimated';
+import {Platform} from 'react-native';
 import React, {useEffect} from 'react';
 import ImagePicker from 'react-native-image-crop-picker';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
-
-import {Platform} from 'react-native';
-
 import {check, request, PERMISSIONS} from 'react-native-permissions';
+import {TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
 
 import {COLORS} from '../themes/color';
 import {STYLES} from '../themes/styles';

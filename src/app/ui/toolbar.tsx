@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, StyleSheet, Image} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 import GenericText from './text';
 import {COLORS} from '../themes/color';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 
 interface IGenericToolbarProps {
   showIcon?: boolean;

@@ -2,10 +2,10 @@ import {
   View,
   Image,
   Modal,
+  Platform,
   StyleSheet,
   Dimensions,
   TouchableOpacity,
-  Platform,
 } from 'react-native';
 import Animated, {
   useSharedValue,
@@ -17,16 +17,18 @@ import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Gesture, GestureDetector} from 'react-native-gesture-handler';
 
-import FabView from '../app/ui/fab';
-import GenericAlert from '../app/ui/alert';
 import {COLORS} from '../app/themes/color';
 import {STYLES} from '../app/themes/styles';
+
+import GenericAlert from '../app/ui/alert';
 import GenericButton from '../app/ui/button';
+
+import FabView from '../app/ui/fab';
+import {APP} from '../app/app.constant';
 import {IImage, IReducerState, IStyles, TDispatch} from '../app/app.types';
 
 import {updateImages} from '../redux/redux.action';
 import {CustomNavigation} from '../helpers/navigation.helper';
-import {APP} from '../app/app.constant';
 
 interface IImageProps {
   image: IImage;
