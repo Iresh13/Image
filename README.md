@@ -11,7 +11,7 @@ Yarn install or npm install
 pod install
 
 
-Design link: https://www.figma.com/file/cf5FGjcmxA97uNTgXNerxI/Untitled?type=design&node-id=0%3A1&mode=design&t=8TFHo3G3Z1ozXAUJ-1
+# Design link: https://www.figma.com/file/cf5FGjcmxA97uNTgXNerxI/Untitled?type=design&node-id=0%3A1&mode=design&t=8TFHo3G3Z1ozXAUJ-1
 
 
 # Features: 
@@ -23,7 +23,7 @@ Long pressing an image allows to select multiple images then pressing the delete
 
 
 
-#Packages installed: 
+# Packages installed: 
 
 React native gesture handler: It offers a collection of pre-made gesture components that may be used to detect and react to a variety of touch motions, including pinching, rotating, tapping, and swiping.
 
