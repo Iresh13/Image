@@ -11,7 +11,8 @@ Yarn install or npm install
 pod install
 
 
-# Design link: https://www.figma.com/file/cf5FGjcmxA97uNTgXNerxI/Untitled?type=design&node-id=0%3A1&mode=design&t=8TFHo3G3Z1ozXAUJ-1
+# Design link:
+https://www.figma.com/file/cf5FGjcmxA97uNTgXNerxI/Untitled?type=design&node-id=0%3A1&mode=design&t=8TFHo3G3Z1ozXAUJ-1
 
 
 # Features: 
