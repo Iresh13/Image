@@ -1,5 +1,5 @@
 import React from 'react';
-import Ant from 'react-native-vector-icons/AntDesign';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import {Image, View, Dimensions, StyleSheet, Platform} from 'react-native';
 
 import {IImage} from '../app/app.types';
@@ -17,7 +17,7 @@ const ImageComponent = ({image}: ImageProps) => {
     <>
       {image.isSelected && (
         <View style={styles.tickIcon}>
-          <Ant name="checkcircle" size={20} color={COLORS.GREEN} />
+          <AntDesign name="checkcircle" size={20} color={COLORS.GREEN} />
         </View>
       )}
       <Image

@@ -4,11 +4,17 @@ import Animated, {
   useSharedValue,
   useAnimatedStyle,
 } from 'react-native-reanimated';
+
+import {
+  check,
+  request,
+  PERMISSIONS,
+  openSettings,
+} from 'react-native-permissions';
 import {Platform} from 'react-native';
 import React, {useEffect} from 'react';
 import ImagePicker from 'react-native-image-crop-picker';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {check, request, PERMISSIONS} from 'react-native-permissions';
 import {TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
 
 import {COLORS} from '../themes/color';
@@ -56,6 +62,7 @@ const FabView = ({
     };
   }, []);
 
+  // animate the menu button once button is pressed
   const animateView = () => {
     (bottom.value = withTiming(animatedBottomValue, {
       duration: 300,
@@ -78,6 +85,7 @@ const FabView = ({
       }));
   };
 
+  //check for permission
   const checkIosGalleryPermission = () => {
     return check(PERMISSIONS.IOS.PHOTO_LIBRARY).then(status => {
       if (status === PERMISSION.GRANTED || status === PERMISSION.LIMITED) {
@@ -109,13 +117,23 @@ const FabView = ({
   };
 
   const checkAndroidGalleryPermission = () => {
-    check(PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE).then(status => {
-      if (status === PERMISSION.GRANTED) {
-        return openPicker();
-      }
+    if (Platform.Version === 33) {
+      check(PERMISSIONS.ANDROID.READ_MEDIA_IMAGES).then(status => {
+        if (status === PERMISSION.GRANTED) {
+          return openPicker();
+        }
 
-      return getGalleryPermission();
-    });
+        return getGalleryPermission();
+      });
+    } else {
+      check(PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE).then(status => {
+        if (status === PERMISSION.GRANTED) {
+          return openPicker();
+        }
+
+        return getGalleryPermission();
+      });
+    }
   };
 
   const getCameraPermission = () => {
@@ -125,16 +143,17 @@ const FabView = ({
           return openCamera();
         }
 
-        return alert('No permission granted.');
+        return setTimeout(() => openSettings(), 1000);
       });
     }
 
+    //requests for permission
     request(PERMISSIONS.ANDROID.CAMERA).then(status => {
       if (status === PERMISSION.GRANTED) {
         return openCamera();
       }
 
-      return alert('No permission granted.');
+      return setTimeout(() => openSettings(), 1000);
     });
   };
 
@@ -145,17 +164,25 @@ const FabView = ({
           return openPicker();
         }
 
-        return alert('No permission granted.');
+        return setTimeout(() => openSettings(), 1000);
       });
     }
 
-    request(PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE).then(status => {
-      if (status === PERMISSION.GRANTED) {
-        return openPicker();
-      }
-
-      return alert('No permission granted.');
-    });
+    if (Platform.Version === 33) {
+      request(PERMISSIONS.ANDROID.READ_MEDIA_IMAGES).then(status => {
+        if (status === PERMISSION.GRANTED) {
+          return openPicker();
+        }
+        return setTimeout(() => openSettings(), 1000);
+      });
+    } else {
+      request(PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE).then(status => {
+        if (status === PERMISSION.GRANTED) {
+          return openPicker();
+        }
+        return setTimeout(() => openSettings(), 1000);
+      });
+    }
   };
 
   const checkCameraPermission = async () => {
@@ -174,6 +201,7 @@ const FabView = ({
     return checkAndroidGalleryPermission();
   };
 
+  // open camera to select image
   const openCamera = async () => {
     return await ImagePicker.openCamera({
       width: 300,
@@ -185,6 +213,7 @@ const FabView = ({
     });
   };
 
+  // open gallery to select image
   const openPicker = async () => {
     return await ImagePicker.openPicker({
       width: 300,
