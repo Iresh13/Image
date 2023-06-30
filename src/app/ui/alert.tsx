@@ -38,6 +38,7 @@ const GenericAlert = ({
   const marginTop = useSharedValue(0);
   const viewHeight = useSharedValue(0);
 
+  // animate the modal.
   useEffect(() => {
     (viewHeight.value = withTiming(modalHeight, {
       duration: 300,

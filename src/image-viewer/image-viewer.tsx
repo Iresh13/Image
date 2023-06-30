@@ -55,6 +55,7 @@ const ImageViewer = ({image, onDelete, componentId}: IImageProps) => {
 
   const [showModal, setShowModal] = useState<boolean>(false);
 
+  // zoom in or zoom out the image and animate the image
   const pinchGesture = Gesture.Pinch()
     .onUpdate(e => {
       scale.value = savedScale.value * e.scale;
@@ -63,6 +64,7 @@ const ImageViewer = ({image, onDelete, componentId}: IImageProps) => {
       savedScale.value = scale.value;
     });
 
+  //move the image and animate the image
   const panGesture = Gesture.Pan()
     .onUpdate(e => {
       translationX.value = savedTranslationX.value + e.translationX;
@@ -81,6 +83,7 @@ const ImageViewer = ({image, onDelete, componentId}: IImageProps) => {
     ],
   }));
 
+  // to reselect the image and update it.
   const onUpdateImage = (newImage: IImage) => {
     newImage.id = image.id;
 

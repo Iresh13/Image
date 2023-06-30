@@ -56,6 +56,7 @@ const FabView = ({
     };
   }, []);
 
+  // animate the menu button once button is pressed
   const animateView = () => {
     (bottom.value = withTiming(animatedBottomValue, {
       duration: 300,
@@ -78,6 +79,7 @@ const FabView = ({
       }));
   };
 
+  //check for permission
   const checkIosGalleryPermission = () => {
     return check(PERMISSIONS.IOS.PHOTO_LIBRARY).then(status => {
       if (status === PERMISSION.GRANTED || status === PERMISSION.LIMITED) {
@@ -129,6 +131,7 @@ const FabView = ({
       });
     }
 
+    //requests for permission
     request(PERMISSIONS.ANDROID.CAMERA).then(status => {
       if (status === PERMISSION.GRANTED) {
         return openCamera();
@@ -174,6 +177,7 @@ const FabView = ({
     return checkAndroidGalleryPermission();
   };
 
+  // open camera to select image
   const openCamera = async () => {
     return await ImagePicker.openCamera({
       width: 300,
@@ -185,6 +189,7 @@ const FabView = ({
     });
   };
 
+  // open gallery to select image
   const openPicker = async () => {
     return await ImagePicker.openPicker({
       width: 300,

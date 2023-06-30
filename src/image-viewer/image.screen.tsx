@@ -49,6 +49,7 @@ const ImageView = ({componentId}: IProps) => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showFabButtons, setShowFabButtons] = useState<boolean>(false);
 
+  // Animated style for icon on fab button
   const animatedPlus = useAnimatedStyle(() => {
     return {
       transform: [
@@ -67,6 +68,7 @@ const ImageView = ({componentId}: IProps) => {
     return hideView();
   }, [showFabButtons]);
 
+  // To animate the FAB button
   const animateView = () => {
     rotation.value = withTiming('45rad', {
       duration: 50,
@@ -74,6 +76,7 @@ const ImageView = ({componentId}: IProps) => {
     });
   };
 
+  // revert back the animation
   const hideView = () => {
     rotation.value = withTiming('0rad', {
       duration: 50,
@@ -81,6 +84,7 @@ const ImageView = ({componentId}: IProps) => {
     });
   };
 
+  // add image once image is added
   const onImage = async (image: IImage) => {
     image.id = images.length + 1;
     image.isSelected = false;
@@ -91,6 +95,7 @@ const ImageView = ({componentId}: IProps) => {
     setShowFabButtons(false);
   };
 
+  // delete image
   const onDelete = (image: IImage) => {
     const newImages: IImage[] = images.filter((item: IImage) => {
       return item.id !== image.id;
@@ -101,6 +106,7 @@ const ImageView = ({componentId}: IProps) => {
     }
   };
 
+  // delete multiple images
   const onDeleteImages = () => {
     const newImages: IImage[] = images.filter((item: IImage) => {
       return item.isSelected === false;
@@ -114,6 +120,7 @@ const ImageView = ({componentId}: IProps) => {
     }
   };
 
+  // to select multiple images
   const mapSelectedImages = (image: IImage) => {
     const newImages = images.map((item: IImage) => {
       if (image.id === item.id) {
@@ -126,6 +133,7 @@ const ImageView = ({componentId}: IProps) => {
     dispatch(updateImages(newImages));
   };
 
+  // to  cancel selected multiple images
   const cancelSelectedImages = () => {
     const newImages = images.map((item: IImage) => {
       item.isSelected = false;
@@ -141,6 +149,7 @@ const ImageView = ({componentId}: IProps) => {
     cancelSelectedImages();
   };
 
+  // on image pressed view the image or select the images
   const onImagePressed = (item: IImage) => {
     if (showMenu) {
       return mapSelectedImages(item);
