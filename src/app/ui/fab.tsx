@@ -117,13 +117,23 @@ const FabView = ({
   };
 
   const checkAndroidGalleryPermission = () => {
-    check(PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE).then(status => {
-      if (status === PERMISSION.GRANTED) {
-        return openPicker();
-      }
+    if (Platform.Version === 33) {
+      check(PERMISSIONS.ANDROID.READ_MEDIA_IMAGES).then(status => {
+        if (status === PERMISSION.GRANTED) {
+          return openPicker();
+        }
 
-      return getGalleryPermission();
-    });
+        return getGalleryPermission();
+      });
+    } else {
+      check(PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE).then(status => {
+        if (status === PERMISSION.GRANTED) {
+          return openPicker();
+        }
+
+        return getGalleryPermission();
+      });
+    }
   };
 
   const getCameraPermission = () => {
@@ -158,13 +168,21 @@ const FabView = ({
       });
     }
 
-    request(PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE).then(status => {
-      if (status === PERMISSION.GRANTED) {
-        return openPicker();
-      }
-
-      return setTimeout(() => openSettings(), 1000);
-    });
+    if (Platform.Version === 33) {
+      request(PERMISSIONS.ANDROID.READ_MEDIA_IMAGES).then(status => {
+        if (status === PERMISSION.GRANTED) {
+          return openPicker();
+        }
+        return setTimeout(() => openSettings(), 1000);
+      });
+    } else {
+      request(PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE).then(status => {
+        if (status === PERMISSION.GRANTED) {
+          return openPicker();
+        }
+        return setTimeout(() => openSettings(), 1000);
+      });
+    }
   };
 
   const checkCameraPermission = async () => {
