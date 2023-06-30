@@ -4,11 +4,17 @@ import Animated, {
   useSharedValue,
   useAnimatedStyle,
 } from 'react-native-reanimated';
+
+import {
+  check,
+  request,
+  PERMISSIONS,
+  openSettings,
+} from 'react-native-permissions';
 import {Platform} from 'react-native';
 import React, {useEffect} from 'react';
 import ImagePicker from 'react-native-image-crop-picker';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {check, request, PERMISSIONS} from 'react-native-permissions';
 import {TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
 
 import {COLORS} from '../themes/color';
@@ -127,7 +133,7 @@ const FabView = ({
           return openCamera();
         }
 
-        return alert('No permission granted.');
+        return setTimeout(() => openSettings(), 1000);
       });
     }
 
@@ -137,7 +143,7 @@ const FabView = ({
         return openCamera();
       }
 
-      return alert('No permission granted.');
+      return setTimeout(() => openSettings(), 1000);
     });
   };
 
@@ -148,7 +154,7 @@ const FabView = ({
           return openPicker();
         }
 
-        return alert('No permission granted.');
+        return setTimeout(() => openSettings(), 1000);
       });
     }
 
@@ -157,7 +163,7 @@ const FabView = ({
         return openPicker();
       }
 
-      return alert('No permission granted.');
+      return setTimeout(() => openSettings(), 1000);
     });
   };
 
